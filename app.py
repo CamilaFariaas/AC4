@@ -1,25 +1,25 @@
-importar  os
-from  flask  import  Flask , jsonify , request
+import os
+from flask import Flask, jsonify, request
 
-app  =  Flask ( __name__ )
+app = Flask (__name__)
 
-@ app . rota ( '/' )
-def  nao_entre_em_panico ():
-    prox  =  1
-    formiga  =  0
-    maximo  =  50
-    encontrado  =  0
-    resposta  =  "0 -"
-    while ( encontrado  <  maximo ):
-        fibo  =  prox
-        prox  =  prox  +  ant
-        formiga  =  fibo
-        encontrado  =  encontrado + 1
-        resposta + =  str ( prox ) +  "-"
+@app.route('/')
+def nao_entre_em_panico():
+    prox = 1
+    ant = 0
+    maximo = 50
+    found = 0
+    resposta = "0 -"
+    while (found < maximo):
+        fibo = prox
+        prox = prox + ant
+        ant = fibo
+        found = found+1
+        resposta+= str(prox) + "-"
 
 
-     resposta de retorno
+    return resposta
 
-if  __name__  ==  "__main__" :
-    porta  =  int ( os . amb . get ( "PORT" , 5000 ))
-    app . executar ( host =  '0.0.0.0' , porta = porta )
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host= '0.0.0.0', port=port)
